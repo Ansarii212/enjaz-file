@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>نموذج تقييم الأدلة</title>
+  <title>صانع  ملف الإنجاز  </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -122,6 +122,35 @@
       text-decoration: none;
       font-weight: bold;
     }
+
+
+.arrow-label {
+  font-size: 14px;
+  color: white;
+  background-color: #8B4513;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-family: 'Cairo', sans-serif;
+}
+
+    .button-row {
+  background-color: #f5f5dc; /* بيج */
+  color: #333; /* لون الخط واضح */
+  border: 2px solid gold; /* بوردر ذهبي */
+  padding: 12px 24px; /* حجم الزر أكبر */
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-row:hover {
+  background-color: gold;
+  color: white;
+  border-color: #d4af37; /* لون ذهبي غامق أثناء التحويم */
+}
     @media print {
       @page {
         size: A4;
@@ -142,15 +171,15 @@
 </head>
 <body>
   <div class="top-bar no-print">
-    <a href="https://ansarii212.github.io/Cert/" target="_blank">العودة للصفحة الرئيسية</a>
+    <a href="https://ansarii212.github.io/Master/" target="_blank">العودة للصفحة الرئيسية</a>
   </div>
 
-  <h1 style="text-align:center;">نموذج تقييم الأدلة</h1>
+  <h1 style="text-align:center;">صانع ملف الإنجاز للمعلمين  </h1>
 
   <!-- Teacher Info Box -->
   <div class="teacher-info container">
     <img id="teacherPhotoPreview" class="teacher-photo" alt="صورة المعلم" />
-    <label>اسم المعلم: <input type="text" id="teacherName"></label>
+    <label>اسم المعلم/ة: <input type="text" id="teacherName"></label>
     <label>التخصص: <input type="text" id="teacherMajor"></label>
     <label>رقم الهوية: <input type="text" id="teacherID"></label>
     <label>تاريخ الميلاد: <input type="date" id="teacherBirth"></label>
@@ -160,12 +189,14 @@
       <input type="file" accept="image/*" onchange="handleTeacherPhoto(this)">
     </label>
   </div>
+<div class="arrow-buttons">
+  <span class="arrow-label">اضغط السهم لإضافة الشواهد</span>
+</div>
 
   <div id="form-area"></div>
-
   <!-- توقيع المعلم -->
   <div class="container">
-    <label>توقيع المعلم (كتابة): <input type="text" id="teacherSignText"></label>
+    <label>توقيع المعلم/ة (كتابة): <input type="text" id="teacherSignText"></label>
     <label>رفع صورة التوقيع:
       <input type="file" accept="image/*" onchange="handleSignature(this)">
     </label>
@@ -174,8 +205,8 @@
 
   <!-- Buttons -->
   <div class="no-print button-row">
-    <button onclick="openReport()">صفحة الإنجاز</button>
-    <button onclick="window.scrollTo(0,0)">عودة للإضافة</button>
+    <button onclick="openReport()"> إصدار ملف الإنجاز  </button>
+    <button onclick="window.scrollTo(0,0)">إلى الأعلى </button>
   </div>
 
   <script>
@@ -194,9 +225,9 @@
       container.innerHTML = `
         <details>
           <summary>
-            <input type="text" placeholder="أدخل عنوان البند ${i}" id="title-${sectionId}" style="font-size:18px; font-weight:bold; width:100%; padding:5px; border-radius:5px; border:1px solid #ccc;">
+            <input type="text" placeholder=" ادخل عنوان مثال : الدورات .. التوزيع  .. " id="title-${sectionId}" style="font-size:18px; font-weight:bold; width:100%; padding:5px; border-radius:5px; border:1px solid #ccc;">
           </summary>
-          <p class="description">شرح توضيحي للبند ${i}.</p>
+          <p class="description">ارفع ثلاث صور تعبر من الشواهد متعلقة بالموضوع .</p>
           ${generateInputRow(sectionId)}
           ${generateInputRow(sectionId)}
           ${generateInputRow(sectionId)}
@@ -320,10 +351,10 @@
           </style>
         </head>
         <body>
-          <h1 style="text-align:center;">صفحة الإنجاز</h1>
+          <h1 style="text-align:center;">ملف الإنجاز</h1>
           <div class="teacher-head">
             <div class="teacher-details">
-              <strong>اسم المعلم:</strong> ${document.getElementById("teacherName").value}<br/>
+              <strong>اسم المعلم/ة:</strong> ${document.getElementById("teacherName").value}<br/>
               <strong>التخصص:</strong> ${document.getElementById("teacherMajor").value}<br/>
               <strong>رقم الهوية:</strong> ${document.getElementById("teacherID").value}<br/>
               <strong>تاريخ الميلاد:</strong> ${document.getElementById("teacherBirth").value}<br/>
@@ -352,11 +383,11 @@
 
       reportWindow.document.write(`
         <hr>
-        <h3>توقيع المعلم:</h3>
+        <h3>توقيع المعلم/ة:</h3>
         <p>${document.getElementById("teacherSignText").value}</p>
         ${teacherSignature ? `<img src="${teacherSignature}" style="width:150px; border:2px solid #ccc; border-radius:5px;">` : ''}
         <div class="button-row">
-          <button onclick="window.print()">طباعة</button>
+          <button onclick="window.print()">طباعة الملف/ مشاركة pdf</button>
           <button onclick="navigator.share ? navigator.share({ title: 'صفحة الإنجاز', url: window.location.href }) : alert('المشاركة غير مدعومة')">مشاركة</button>
         </div>
       </body></html>`);
@@ -365,6 +396,6 @@
   </script>
 </body>
 </html>
+  تنبيه : اذا لم يعمل زر إصدار ملف الإنجاز رجاء فتح الصفحة من خلال جوجل كروم
 
-تعديل طفيف مع الحفاظ على نفس التنسيق وكل شي
-عند الضغط على زر إصدار الملف يتم التوجيه إلى صفحة الدفع في سلة واذا تم الدفع في سلة تنفذ الأمر
+  للدعم الفني : ahlika24@gmail.com
